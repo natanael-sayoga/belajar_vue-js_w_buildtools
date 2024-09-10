@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Home", 
+        "url": "home.html",
+        "pageTitle": "Welcome to Home Page",
+        "content": "HOME PAGE CONTENTS"
+    },
+    {
+        "title": "About", 
+        "url": "about.html",
+        "pageTitle": "Welcome to About Page",
+        "content": "ABOUT PAGE CONTENTS"
+    },
+    {
+        "title": "Contacts", 
+        "url": "contacts.html",
+        "pageTitle": "Welcome to Contacts Page",
+        "content": "CONTACTS PAGE CONTENTS"
+    }
+]
