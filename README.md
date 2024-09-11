@@ -45,5 +45,5 @@ let say we have a text box with the value attribute being binded to a variable i
 ``` javascript
 @input="(event) => {data = event.target.value}" //event.target adalah element input (text field), dia disebut target karena dialah yang dikenai event
 ```
-<br> the alternative is using [v-model](https://vuejs.org/guide/components/v-model.html)
+<br> the alternative is using <a href="https://vuejs.org/guide/components/v-model.html">v-model</a>, data binding via v-model memperbolehkan komunikasi terjadi 2 arah, jika ada perubahan data maka objek akan di render ulang dan jika ada perubahan di binded objek maka data akan diupdate
 </div>

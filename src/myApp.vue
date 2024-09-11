@@ -5,20 +5,25 @@
             v-bind:on-click-listener="(index) => {currentPage = index}"
             v-bind:current-page="currentPage">
         </NavBar>
-        <PageContent
+        <!-- <PageContent
             v-bind:page="pages[currentPage]">
-        </PageContent>
+        </PageContent> -->
+        <create-page
+            v-bind:page-created="pageCreated">
+        </create-page>
     </div>
 </template>
 
 <script>
 import PageContent from './components/PageContent.vue';
 import NavBar from './components/NavBar.vue';
+import CreatePage from './components/CreatePage.vue';
 
 export default{
     components:{
         PageContent,
-        NavBar
+        NavBar,
+        CreatePage
     },
     created(){
         //after the object is created 
@@ -56,6 +61,9 @@ export default{
             let pages = await fetch("../public/pages.json")
             let jsonPages = await pages.json()
             this.pages= jsonPages
+        },
+        pageCreated(myObj){
+            console.log(myObj)
         }
     }
 }

@@ -42,6 +42,9 @@
                 theme: 'light'
             }
         },
+        created(){
+            this.theme = this.getCurrentTheme()
+        },
         methods: {
             changeTheme(){
                 let default_theme = "light"
@@ -49,6 +52,13 @@
                     default_theme = "dark"
                 }
                 this.theme = default_theme;
+                this.saveCurrentTheme()
+            },
+            saveCurrentTheme(){
+                localStorage.setItem('theme', this.theme)
+            },
+            getCurrentTheme(){
+                return localStorage.getItem('theme')
             }
         }
     }
