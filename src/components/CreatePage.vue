@@ -14,7 +14,7 @@
                 >
             </div>
             <div class="mb-3">
-                <label for="formInput2">Another label</label>
+                <label for="formInput2">Page Content</label>
                 <textarea 
                     type="text" 
                     class="form-control" 
@@ -23,13 +23,47 @@
                     rows="5"
                     v-model="content"></textarea>
             </div>
+            <div class="col-md-3">
+                <div class="mb-3">
+                    <label for="formInput3" class="form-label">
+                        Link Text
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="formInput3" 
+                        placeholder="Example input"
+                        v-model="linkText"
+                    >
+                </div>
+                <div class="mb-3">
+                    <label for="formInput4" class="form-label">
+                        Link URL
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="formInput4" 
+                        placeholder="Example input"
+                        v-model="linkUrl"
+                    >
+                </div>
+                <div class="row mb-3">
+                    <div class="form-check">
+                        <input 
+                            disabled
+                            class="form-check-input" 
+                            type="checkbox" 
+                            id="gridCheck1"  
+                            v-bind:checked="valid">
+                        <label class="form-check-label" for="gridCheck1">Published</label>
+                    </div>
+                </div>
+            </div>
             <div class="mb-3">
                 <button 
                     class="btn btn-primary"
-                    v-on:click.prevent="pageCreated({
-                        'pageTitle': pageTitle,
-                        'content': content
-                    })">
+                    v-on:click.prevent="validateForm()">
                     Create Page
                 </button>
             </div>
@@ -43,7 +77,26 @@ export default{
     data(){
         return{
             pageTitle:"",
-            content:""
+            content:"",
+            linkText:"", //padanannya title
+            linkUrl:"",
+            valid:false
+        }
+    },
+    methods:{
+        validateForm(){
+            if(!this.pageTitle || !this.content || !this.linkText || !this.linkUrl){
+                alert("Please complete form!")
+                this.valid = false
+                return
+            }
+            this.pageCreated({
+                'pageTitle':this.pageTitle,
+                'content': this.content,
+                'linkText': this.linkText,
+                'linkUrl':this.linkUrl
+            })
+            this.valid = true
         }
     }
 }
