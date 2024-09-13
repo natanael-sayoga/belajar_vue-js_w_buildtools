@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <a href="#" class="navbar-brand">My Test App</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li v-for="(page, index) in pages" class="nav-item" v-bind:key="index">
+                <li v-for="(page, index) in filteredPages" class="nav-item" v-bind:key="index">
                     <NavBarLink
                         v-bind:page="page"
                         v-on:click.prevent="onClickListener(index)"
@@ -40,6 +40,11 @@
         data(){
             return{
                 theme: 'light'
+            }
+        },
+        computed:{
+            filteredPages(){
+                return this.pages.filter((page)=>{return page.published == true})
             }
         },
         created(){

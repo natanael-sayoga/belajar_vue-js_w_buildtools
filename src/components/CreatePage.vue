@@ -48,15 +48,23 @@
                         v-model="linkUrl"
                     >
                 </div>
-                <div class="row mb-3">
-                    <div class="form-check">
+                <div class="row">
+                    <div class="col form-check">
+                        <input 
+                            v-model="published"
+                            class="form-check-input" 
+                            type="checkbox" 
+                            id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">published</label>
+                    </div>
+                    <div class="col form-check">
                         <input 
                             disabled
                             class="form-check-input" 
                             type="checkbox" 
-                            id="gridCheck1"  
-                            v-bind:checked="valid">
-                        <label class="form-check-label" for="gridCheck1">Published</label>
+                            id="gridCheck2"  
+                            v-bind:checked="isValid">
+                        <label class="form-check-label" for="gridCheck2">Valid</label>
                     </div>
                 </div>
             </div>
@@ -78,25 +86,51 @@ export default{
         return{
             pageTitle:"",
             content:"",
-            linkText:"", //padanannya title
+            linkText:"",
             linkUrl:"",
-            valid:false
+            published:false
+        }
+    },
+    computed:{
+        isValid(){
+            //visual representation whether the form is valid
+            return !(!this.pageTitle || !this.content || !this.linkText || !this.linkUrl)
         }
     },
     methods:{
         validateForm(){
             if(!this.pageTitle || !this.content || !this.linkText || !this.linkUrl){
                 alert("Please complete form!")
-                this.valid = false
                 return
             }
             this.pageCreated({
+                'title': this.linkText,
+                'url':this.linkUrl,
                 'pageTitle':this.pageTitle,
                 'content': this.content,
-                'linkText': this.linkText,
-                'linkUrl':this.linkUrl
+                'published':this.published
             })
-            this.valid = true
+            this.clearForm()
+        },
+        clearForm(){
+            this.pageTitle="",
+            this.content="",
+            this.linkUrl="",
+            this.linkText="",
+            this.published=false
+        }
+    },
+    watch:{
+        pageTitle(newTitle, oldTitle){
+            //oldTitle -> value dilihat dari saat data belum diubah 
+            //            sama sekali, think of it as a data stream
+            //            ex: saat title masih empty
+            //
+            //tiap kali ada perubahan, asal linkText == oldTitle,
+            //execute this code
+            if(this.linkText == oldTitle){
+                this.linkText = newTitle
+            }
         }
     }
 }

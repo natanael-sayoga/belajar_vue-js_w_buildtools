@@ -40,30 +40,20 @@ export default{
             //                 "url": "home.html",
             //                 "pageTitle": "Welcome to Home Page",
             //                 "content": "HOME PAGE CONTENTS"
-            //             },
-            //             {
-            //                 "title": "About", 
-            //                 "url": "about.html",
-            //                 "pageTitle": "Welcome to About Page",
-            //                 "content": "ABOUT PAGE CONTENTS"
-            //             },
-            //             {
-            //                 "title": "Contacts", 
-            //                 "url": "contacts.html",
-            //                 "pageTitle": "Welcome to Contacts Page",
-            //                 "content": "CONTACTS PAGE CONTENTS"
-            //             }
-            //         ]
+            //             }            
+            //         }
+            //     ]
         }
     },
     methods:{
         async getPages(){
             let pages = await fetch("../public/pages.json")
             let jsonPages = await pages.json()
-            this.pages= jsonPages
+            this.pages = jsonPages
         },
         pageCreated(myObj){
             console.log(myObj)
+            this.pages.push(myObj)
         }
     }
 }
