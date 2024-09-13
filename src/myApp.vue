@@ -9,7 +9,7 @@
             v-bind:page="pages[currentPage]">
         </PageContent> -->
         <create-page
-            v-bind:page-created="pageCreated">
+            @page-created="pageCreated">
         </create-page>
     </div>
 </template>

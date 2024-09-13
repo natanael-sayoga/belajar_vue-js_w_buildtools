@@ -48,3 +48,57 @@ let say we have a text box with the value attribute being binded to a variable i
 ```
 <br> the alternative is using <a href="https://vuejs.org/guide/components/v-model.html">v-model</a>, data binding via v-model memperbolehkan komunikasi terjadi 2 arah, jika ada perubahan data maka objek akan di render ulang dan jika ada perubahan di binded objek maka data akan diupdate
 </div>
+
+## Emiting event instead of Binding the event
+let say in our entry page (usually the app.vue) we have data of all the pages that need to be shown and then we have a Child Component that has the ability to inserting a new page data, usually we can hanle it like this:
+1. binding a method inside the child component props:
+```vue
+<!-- template in parent component: -->
+<create-page
+    v-bind:page-created="pageCreated">
+</create-page>
+
+<!-- the script in child component -->
+<script>
+export default{
+    props:['pageCreated', 'otherProps']
+}
+</script>
+```
+this is called 'emulating' an event, dimana ada method dari parent yg dikirim sebagai property yang bisa dipakai oleh child (of course, hal ini berarti kita harus menyiapkan props pageCreated di child component)
+2. emiting the method inside the child component so that the parent component received the callback:
+```vue
+<!-- template in parent component: -->
+<create-page
+    @page-created="pageCreated">
+</create-page>
+
+<!-- the script in child component -->
+<script>
+export default{
+    props:['otherProps'],
+    emits:{
+        pageCreated(){
+            //insert data validation
+        }
+    },
+    /* or declare it like this:
+    emits: ['pageCreated']
+    */
+    method:{
+        caller(){
+            //...
+            this.$emit('pageCreated', {
+                //data that need 
+                //to be passed inside
+            })
+            //...
+        }
+    }
+}
+</script>
+```
+this way we don't need to declare the function pageCreated inside our props, sehingga benar-benar terjadi pemisahan antara data (PROPS) dan method (EMITS), contoh pemanggilan di child component:
+```vue
+
+```

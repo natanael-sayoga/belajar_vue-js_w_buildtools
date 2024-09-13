@@ -81,7 +81,7 @@
 
 <script>
 export default{
-    props:['pageCreated'],
+    emits: ['pageCreated'],
     data(){
         return{
             pageTitle:"",
@@ -103,7 +103,7 @@ export default{
                 alert("Please complete form!")
                 return
             }
-            this.pageCreated({
+            this.$emit("pageCreated", {
                 'title': this.linkText,
                 'url':this.linkUrl,
                 'pageTitle':this.pageTitle,
