@@ -1,29 +1,27 @@
 <template>
     <div v-if="pages.length>0">
-        <NavBar
-            v-bind:pages="pages"
-            v-bind:on-click-listener="(index) => {currentPage = index}"
-            v-bind:current-page="currentPage">
+        <NavBar>
+
         </NavBar>
+        <RouterView>
+            
+        </RouterView>
         <!-- <PageContent
             v-bind:page="pages[currentPage]">
-        </PageContent> -->
+        </PageContent>
         <create-page
-            @page-created="pageCreated">
-        </create-page>
+            @page-created="pageCreated"
+            @sum="sum">
+        </create-page> -->
     </div>
 </template>
 
 <script>
-import PageContent from './components/PageContent.vue';
 import NavBar from './components/NavBar.vue';
-import CreatePage from './components/CreatePage.vue';
 
 export default{
     components:{
-        PageContent,
-        NavBar,
-        CreatePage
+        NavBar
     },
     created(){
         //after the object is created 
@@ -33,16 +31,7 @@ export default{
     data(){
         return{
             currentPage:0,
-            pages: [],
-            // pages: [
-            //             {
-            //                 "title": "Home", 
-            //                 "url": "home.html",
-            //                 "pageTitle": "Welcome to Home Page",
-            //                 "content": "HOME PAGE CONTENTS"
-            //             }            
-            //         }
-            //     ]
+            pages: []
         }
     },
     methods:{
@@ -51,9 +40,12 @@ export default{
             let jsonPages = await pages.json()
             this.pages = jsonPages
         },
-        pageCreated(myObj){
-            console.log(myObj)
-            this.pages.push(myObj)
+        // pageCreated(myObj){
+        //     console.log(myObj)
+        //     this.pages.push(myObj)
+        // },
+        sum(a , b){
+            console.log(a + b)
         }
     }
 }

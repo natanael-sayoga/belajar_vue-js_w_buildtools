@@ -1,25 +1,15 @@
 <template>
-    <a 
+    <RouterLink 
         class="nav-link"
-        v-bind:class="activeClass"
-        v-bind:href="page.url" 
-        v-bind:title="`go to ${page.title} Page`" 
         aria-current="page"
+        active-class="active underlined"
         >{{page.title}}
-    </a>
+    </RouterLink>
 </template>
 
 <script>
 export default{
-    props:['page', 'isActive'],
-    computed:{
-        activeClass(){
-            return {
-                active: this.isActive,
-                underlined: this.isActive
-            }
-        }
-    }
+    props:['page']
 }
 </script>
 

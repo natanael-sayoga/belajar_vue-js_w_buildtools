@@ -10,18 +10,17 @@
                 <li v-for="(page, index) in filteredPages" class="nav-item" v-bind:key="index">
                     <NavBarLink
                         v-bind:page="page"
-                        v-on:click.prevent="onClickListener(index)"
-                        v-bind:isActive="currentPage==index">
+                        :to="`/${index}`" >
                     </NavBarLink>
-                    <!-- <a 
-                        class="nav-link"
-                        v-bind:class="{active:currentPage==index}"
-                        v-bind:href="page.url" 
-                        v-bind:title="`go to ${page.title} Page`" 
-                        aria-current="page"
-                        v-on:click.prevent="onClickListener(index)"
-                        >{{page.title}}
-                    </a> -->
+                </li>
+                <li>
+                    <NavBarLink
+                        :to="'/pages/create'"
+                        v-bind:page="{
+                            title: 'Create Page'
+                        }"
+                    >
+                    </NavBarLink>
                 </li>
             </ul>
             <button class="btn btn-primary" v-on:click.prevent="changeTheme()">Dark Mode</button>
@@ -36,9 +35,9 @@
         components:{
             NavBarLink
         },
-        props:['pages', 'currentPage', 'onClickListener'],
         data(){
             return{
+                pages:[],
                 theme: 'light'
             }
         },
@@ -48,7 +47,8 @@
             }
         },
         created(){
-            this.theme = this.getCurrentTheme()
+            this.theme = this.getCurrentTheme(),
+            this.pages = this.$pages.getAllPages()
         },
         methods: {
             changeTheme(){

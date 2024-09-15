@@ -34,6 +34,7 @@ npm run build
 npm run lint
 ```
 
+# Problems and Sollutions:
 ## Async Method problem:
 <div style="text-align: justify">
 due to the nature of async method, some elements can be rendered twice or more because on the first render attempt, the async FETCH method is probably haven't finished fethching all the data yet resulting in empty Promise (objek Promise yang belum di resolve). However after some times had passed and all the data had been fetched, Vue notices that the data had been update and try to render once more using the newly fetched data, this is why some elements can appears as if it is being rendered twice. The solution is using the CORRECT APPLICATION LIFE CYCLE during an async method call
@@ -98,7 +99,7 @@ export default{
 }
 </script>
 ```
-this way we don't need to declare the function pageCreated inside our props, sehingga benar-benar terjadi pemisahan antara data (PROPS) dan method (EMITS), contoh pemanggilan di child component:
-```vue
+this way we don't need to declare the function pageCreated inside our props, sehingga benar-benar terjadi pemisahan antara data (PROPS) dan method (EMITS)
 
-```
+## Changing layout if url parameter is changed:
+by default, vue is reactive to the changes happening inside our component, contohnya jika terjadi perubahan data pada Option Object (the one we are DEFAULT EXPORT-ing maka template akan melakukan re-render). However, the component itself isn't going to react / re-render to changes happening in the url variable (since THIS PARTICULAR COMPONENT IS ALREADY BEING RENDERED, so vue see no point in re-rendering) to handle this, create a WATCHER OBJECT inside our created() method, refers to this documentation: [Accessing url parameter using router instance](https://router.vuejs.org/guide/essentials/dynamic-matching.html)

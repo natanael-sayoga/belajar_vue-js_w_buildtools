@@ -81,7 +81,7 @@
 
 <script>
 export default{
-    emits: ['pageCreated'],
+    emits: ['pageCreated', 'sum'],
     data(){
         return{
             pageTitle:"",
@@ -110,6 +110,7 @@ export default{
                 'content': this.content,
                 'published':this.published
             })
+            // this.$emit("sum", 10, 11)
             this.clearForm()
         },
         clearForm(){
