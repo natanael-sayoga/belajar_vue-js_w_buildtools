@@ -15,9 +15,9 @@
                 </li>
                 <li>
                     <NavBarLink
-                        :to="'/pages/create'"
+                        :to="'/pages'"
                         v-bind:page="{
-                            title: 'Create Page'
+                            title: 'Pages'
                         }"
                     >
                     </NavBarLink>
@@ -32,6 +32,7 @@
     import NavBarLink from './NavBarLink.vue';
     
     export default{
+        inject:['$pages'],
         components:{
             NavBarLink
         },

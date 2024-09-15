@@ -12,6 +12,7 @@
 <script>
     export default{
         // props:['page'], no need to use props since we are using url params
+        inject:['$pages'],
         data(){
             return{
                 currentPage: null,

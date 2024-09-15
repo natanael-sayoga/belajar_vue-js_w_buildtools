@@ -34,6 +34,12 @@ if(localStorage.getItem("pages") === null){
 const myAppEntry = createApp(myApp)
 
 myAppEntry.use(router)
-myAppEntry.config.globalProperties.$pages = $pages
+myAppEntry.provide("$pages", $pages)
 
 myAppEntry.mount("#myApp")
+
+//provide centralized data access:
+//1. if u are using Option API (this will enable $pages to all components):
+//   myAppEntry.config.globalProperties.$pages = $pages
+//2. if u are using Composition API (this will enable $pages ONLY to component that need them):
+//   myAppEntry.provide("$pages", $pages)
