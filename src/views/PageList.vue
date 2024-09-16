@@ -13,7 +13,7 @@
                 <tr v-for="(page, index) in $pages.getAllPages()" v-bind:key="index" v-on:click.prevent="toEditPage(index)">
                     <td>{{ page.title }}</td>
                     <td>{{ page.url }}</td>
-                    <td>{{ page.published ? "Yes":"No" }}</td>
+                    <td>{{ page.published == "true" ? "Yes":"No" }}</td>
                 </tr>
             </tbody>
         </table>
@@ -24,11 +24,9 @@
         Create
     </button>
     <div class="container">
-        <center>
-            <p>Click Counter</p>
-            <p>{{ data.clickCount }}</p>
-            <button class="btn btn-primary" v-on:click.prevent="click()">Click</button>
-        </center>
+        <p>Click Counter</p>
+        <p>{{ data.clickCount }}</p>
+        <button class="btn btn-primary" v-on:click.prevent="click()">Click</button>
     </div>
 </template>
 

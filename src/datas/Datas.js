@@ -7,5 +7,9 @@ export default{
     },
     getSinglePage(currentPage){
         return pagesArray[currentPage]
+    },
+    updatePage(index, updatedPage){
+        pagesArray[index] = updatedPage
+        localStorage.setItem('pages', JSON.stringify(pagesArray))
     }
 }

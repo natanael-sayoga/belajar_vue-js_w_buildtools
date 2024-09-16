@@ -44,7 +44,7 @@
         },
         computed:{
             filteredPages(){
-                return this.pages.filter((page)=>{return page.published == true})
+                return this.pages.filter((page)=>{return page.published == "true"})
             }
         },
         created(){
